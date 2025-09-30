@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/electron-vite.animate.svg'
-import './App.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import { useOutlet } from "react-router-dom";
+import { Todo } from '../electron/types/types';
+import AppNavBar from "./components/NavBar";
+
+// Type 선언 
+interface ApiType{
+  getTodoList: () => Promise<Todo[]>;
+  addTodo: (title: string, comment: string, t: string) => Promise<boolean>;
+  toggleTodo: (id: number) => Promise<boolean>;
+}
+
+// 전역 설정
+declare global{
+  interface Window{
+    api:ApiType
+  }
+}
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="https://electron-vite.github.io" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  //현재 경로에 맞는 자식 route compoent 를 반환 한다 
+  const currentOutlet=useOutlet();
+
+
+  return <>
+    <AppNavBar />
+    <div className="container-fluid mt-5 pt-5">
+      {currentOutlet}
+    </div>
+  </>
+  
 }
 
 export default App

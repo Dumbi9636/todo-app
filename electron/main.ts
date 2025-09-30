@@ -1,20 +1,14 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, globalShortcut } from 'electron'
 import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
+import { registerIpc } from './ipc-handler'
+import { getDB } from "./db";   
 
 const require = createRequire(import.meta.url)
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-// The built directory structure
-//
-// ├─┬─┬ dist
-// │ │ └── index.html
-// │ │
-// │ ├─┬ dist-electron
-// │ │ ├── main.js
-// │ │ └── preload.mjs
-// │
+
 process.env.APP_ROOT = path.join(__dirname, '..')
 
 // 🚧 Use ['ENV_NAME'] avoid vite:define plugin - Vite@2.x
@@ -65,4 +59,27 @@ app.on('activate', () => {
   }
 })
 
-app.whenReady().then(createWindow)
+// ---------------------------------------------------------------------------
+app.whenReady().then(()=>{
+  getDB(); 
+  createWindow();
+  registerIpc(); // ipc-handlers.ts 가 동작하도록  함수 호출 
+
+})
+// window 창에 포커스가 왔을때 실행할 함수 
+app.on("browser-window-focus", ()=>{
+  // ctrl + t 를 눌렀을때 개발 tool 이 열리도록 한다 
+  globalShortcut.register("Control+t", ()=>{
+    win?.webContents.openDevTools();
+  });
+});
+
+// window 창에 포커스를 잀었을때 실행할 함수 
+app.on("browser-window-blur", ()=>{
+  globalShortcut.unregisterAll();
+});
+
+//앱이 종료되기 직전에 실행할 함수 
+app.on("will-quit", ()=>{
+  globalShortcut.unregisterAll();
+});
