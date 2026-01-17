@@ -12,14 +12,14 @@ Electron Todo App
 - 웹 기술로 데스크톱 앱을 만드는 흐름 학습
 - IPC 통신 개념 및 이벤트 기반 동작 방식 이해
 
-사용 기술
+사용 기술: 
 Electron
 JavaScript (ES6+)
 HTML / CSS
 Node.js
 로컬 데이터 저장
 
-주요 기능
+주요 기능: 
 Todo 등록
 Todo 목록 조회
 Todo 완료 / 미완료 처리
