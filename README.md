@@ -28,11 +28,11 @@ Todo 삭제
 
 앱 구조
 
-Main Process
+Main Process: 
 Electron 앱 실행 및 윈도우 생성
 애플리케이션 생명주기 관리
 
-Renderer Process
+Renderer Process: 
 사용자 UI 렌더링
 Todo 입력 및 이벤트 처리
 사용자 인터랙션 중심 로직 담당
