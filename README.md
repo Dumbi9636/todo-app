@@ -1,30 +1,38 @@
-# React + TypeScript + Vite
+Electron Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+프로젝트 개요
+본 프로젝트는 Electron을 활용한 데스크톱 Todo 애플리케이션으로,
+웹 기술(HTML / CSS / JavaScript)을 기반으로 데스크톱 앱 구조와 동작 방식을 이해하기 위해 제작되었습니다.
 
-Currently, two official plugins are available:
+단순한 Todo 관리 기능을 구현하는 과정에서 Electron의 메인 프로세스와 렌더러 프로세스 구조,
+그리고 로컬 데이터 관리 방식에 집중했습니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+개발 목적
+- Electron 앱의 기본 구조(Main / Renderer) 이해
+- 웹 기술로 데스크톱 앱을 만드는 흐름 학습
+- IPC 통신 개념 및 이벤트 기반 동작 방식 이해
 
-## Expanding the ESLint configuration
+사용 기술
+Electron
+JavaScript (ES6+)
+HTML / CSS
+Node.js
+로컬 데이터 저장
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+주요 기능
+Todo 등록
+Todo 목록 조회
+Todo 완료 / 미완료 처리
+Todo 삭제
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+앱 구조
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Main Process
+Electron 앱 실행 및 윈도우 생성
+애플리케이션 생명주기 관리
+
+Renderer Process
+사용자 UI 렌더링
+Todo 입력 및 이벤트 처리
+사용자 인터랙션 중심 로직 담당
